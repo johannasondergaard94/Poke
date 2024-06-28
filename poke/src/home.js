@@ -16,6 +16,15 @@ export function Home() {
     justify-content: center;
     `
 
+    const Title = styled.div `
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: Myfont;
+    margin: auto;
+    `
+
     const [pokemons, setPokemons] = useState([]);
     const [loadPokemon, setLoadPokemon] = useState(
             "https://pokeapi.co/api/v2/pokemon?limit=151"
@@ -52,7 +61,19 @@ export function Home() {
 
   return (
     <>
-    <h1>Pokedex</h1>
+    <Title>Pokedex</Title>
+    <Box>
+    {pokemons.map(pokemon =>
+        <PokemonCard
+        name={pokemon.name}
+        img={pokemon.sprites.other.dream_world.front_default}
+        bg={pokemon.types[0].type.name}
+        to={pokemon.name}
+        isClickable={true}
+        small
+        />
+    )}
+    </Box>
     </>
   )
 };
